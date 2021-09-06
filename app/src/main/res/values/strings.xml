@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">VODApp</string>
+    <string name="vod_image">VOD Image</string>
+    <string name="watch_history">Watch History</string>
+    <string name="watch_history_empty">Watch History is empty…</string>
+    <string name="vod_list">VOD List</string>
+    <string name="metadata">Metadata</string>
+</resources>

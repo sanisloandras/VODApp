@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/vodListFragment">
+
+    <fragment
+        android:id="@+id/vodListFragment"
+        android:name="com.sanislo.vodapp.presentation.vods.VodListFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_vod_list">
+        <action
+            android:id="@+id/action_vodListFragment_to_playerFragment"
+            app:destination="@id/playerFragment" />
+        <action
+            android:id="@+id/action_vodListFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="com.sanislo.vodapp.presentation.player.PlayerFragment"
+        android:label="PlayerFragment"
+        tools:layout="@layout/fragment_player" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_playerFragment_to_metadataFragment"
+            app:destination="@id/metadataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        tools:layout="@layout/fragment_history"
+        android:name="com.sanislo.vodapp.presentation.history.HistoryFragment"
+        android:label="HistoryFragment" >
+        <action
+            android:id="@+id/action_historyFragment_to_playerFragment"
+            app:destination="@id/playerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/metadataFragment"
+        android:name="com.sanislo.vodapp.presentation.metadata.MetadataFragment"
+        android:label="MetadataFragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+</navigation>
