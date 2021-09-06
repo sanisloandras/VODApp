@@ -51,8 +51,8 @@ dependencies {
     testImplementation deps.atsl.ext_junit
     testImplementation deps.arch_core.testing
     testImplementation deps.mockito.core
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
-    testImplementation 'app.cash.turbine:turbine:0.6.0'
+    testImplementation deps.mockito.kotlin
+    testImplementation deps.turbine
 
     implementation deps.coroutines.android
     implementation deps.coroutines.test
@@ -72,11 +72,11 @@ dependencies {
     implementation deps.navigation.runtime_ktx
     implementation deps.navigation.fragment_ktx
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.15.0'
+    implementation deps.exoplayer
 
-    implementation("androidx.datastore:datastore:1.0.0")
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation deps.datastore.core
+    implementation deps.datastore.preferences
 
-    implementation "com.google.dagger:hilt-android:2.38.1"
-    kapt "com.google.dagger:hilt-compiler:2.38.1"
+    implementation deps.hilt.android
+    kapt deps.hilt.compiler
 }

@@ -4,9 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.times
-import com.sanislo.vodapp.data.datastore.VodAppDataStore
 import com.sanislo.vodapp.domain.Result
 import com.sanislo.vodapp.domain.usecase.LoadVodInfoUseCase
+import com.sanislo.vodapp.domain.usecase.SaveProgressUseCase
 import com.sanislo.vodapp.presentation.player.PlayerViewModel
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -30,7 +30,7 @@ class PlayerViewModelTest {
     var mainCoroutineRule = MainCoroutineRule()
 
     @Mock
-    private lateinit var vodAppDataStore: VodAppDataStore
+    private lateinit var saveProgressUseCase: SaveProgressUseCase
 
     @Mock
     private lateinit var loadVodInfoUseCase: LoadVodInfoUseCase
@@ -40,7 +40,7 @@ class PlayerViewModelTest {
     @Before
     fun setupViewModel() {
         viewModel =
-            PlayerViewModel(vodAppDataStore, loadVodInfoUseCase, mainCoroutineRule.CoroutineScope())
+            PlayerViewModel(saveProgressUseCase, loadVodInfoUseCase, mainCoroutineRule.CoroutineScope())
     }
 
     @Test
@@ -56,12 +56,12 @@ class PlayerViewModelTest {
     @Test
     fun test_onStop() = mainCoroutineRule.runBlockingTest {
         viewModel.onStop("mock_id", 42L)
-        Mockito.verify(vodAppDataStore, times(1)).saveProgress("mock_id", 42L)
+        Mockito.verify(saveProgressUseCase, times(1)).invoke("mock_id", 42L)
     }
 
     @Test
     fun test_onEnded() = mainCoroutineRule.runBlockingTest {
         viewModel.onEnded("mock_id")
-        Mockito.verify(vodAppDataStore, times(1)).saveProgress("mock_id", 0L)
+        Mockito.verify(saveProgressUseCase, times(1)).invoke("mock_id", 0L)
     }
 }
